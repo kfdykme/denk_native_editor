@@ -62,24 +62,25 @@ class _MyHomePageState extends State<MyHomePage> {
   late TextEditingController controller;
 
   void _incrementCounter() {
-    setState(() {
-      controller.text =  getEmojiNumberByIndex(3);
-    });
-    // String currentText = TEXT_DATA;
-
-    // int currentIndex = 0;
-    // List<String> results = [];
-    // currentText.split("\n").forEach((element) { 
-    //   String resultItem = element;
-    //   if (element.contains("- ")) {
-    //     resultItem = resultItem.replaceFirst("- ", "${getEmojiNumberByIndex(++currentIndex)} ");
-    //   }
-    //   results.add(resultItem);
-    // });
-
     // setState(() {
-    //   controller.text = results.join("\n");
+    //   controller.text =  getEmojiNumberByIndex(3);
     // });
+    // String currentText = TEXT_DATA;
+    String currentText = controller.text;
+
+    int currentIndex = 0;
+    List<String> results = [];
+    currentText.split("\n").forEach((element) { 
+      String resultItem = element;
+      if (element.contains("- ")) {
+        resultItem = resultItem.replaceFirst("- ", "${getEmojiNumberByIndex(++currentIndex)} ");
+      }
+      results.add(resultItem);
+    });
+
+    setState(() {
+      controller.text = results.join("\n");
+    });
   }
 
   @override
@@ -109,7 +110,12 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child:TextField(
               controller: controller,
-              maxLines: 100,
+              maxLines: 1000,
+               decoration: InputDecoration(
+              hintTextDirection: TextDirection.ltr,
+              // labelText: "label",
+              hintText: "请输入文本",
+            ),
             ),
       ),
       floatingActionButton: FloatingActionButton(
