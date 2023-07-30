@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<String> results = [];
     currentText.split("\n").forEach((element) { 
       String resultItem = element;
-      if (element.contains("- ")) {
+      if (element.contains("-")) {
         resultItem = resultItem.replaceFirst("- ", "${getEmojiNumberByIndex(++currentIndex)} ");
       }
       results.add(resultItem);
